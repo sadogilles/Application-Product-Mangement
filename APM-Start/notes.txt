@@ -1,0 +1,140 @@
+------
+Angular 
+-------
+
+Angular is a javascript framework for building client side application.
+
+Technologies: HTML, CSS,Javascript
+
+Why Angular ?
+---
+Expressive HTML
+
+
+App = component + services
+
+Component = template (UI) + class (properties, methods) + metadata 
+
+Tyscript is the language used when buiding angular application
+
+javascript
+--
+language for the web
+ECMAScript(ES) : specification for javascript
+To learn more about javascript
+checkout : https://www.typescriptlang.org/play
+pluralsight : typescript getting started
+
+Typescript
+--
+Open source language
+superset of javascript
+transpiled to plain javascript
+strongly typed
+
+IDE 
+--
+Intellij, vscode
+
+NPM -> Node package manager
+--
+open source repository
+Command line utility for interacting with the repository
+Installing node -> installs NPM
+npm install -> install libaries and packages and applications
+npm -v -> node version
+
+Angular application 
+---
+package.json
+	dependencies
+		package required for developement and deployement
+	devDependencies
+		package required for developement 
+
+when you clone application
+	npm install 
+	npm run 
+	ng serve -o
+To create new application
+	npm install -g @angular/cli
+	ng new apm-new --prefix pm 
+		the prefix used to refer the application <pm-root></pm-root>
+	npm start
+angular application anatomy
+--
+project_name
+	src
+		app
+			The application module
+
+	main.ts
+		entry of the application
+	polyfills.ts
+	style.css
+		global css of the application
+	test.ts
+	package.json
+
+Angular component 
+----
+
+What is a component ?
+	component = template + class (prop and methods) + metadata (defined with a decorator)
+
+Defining the metadata
+	Enable angular
+
+A fucntion that adds metadata to a class, its meember or it methods argument.
+Always prefixed with @ and suffix with ()
+	@Component({object})
+
+import statement
+--
+Enable compiler to find where to import an element.
+Import {Component} from '@angular/core'
+
+import {Component} from '@angular/core'
+@Component(
+{
+	selector:'pm-root', //directive <pm-root></pm-root>
+	template:`<div></div>`
+	styleUrl:[]
+})
+export class AppComponent{//export tels the class can be used externally
+	pageTitle:string='ACME product Management'	
+}
+
+<pm-root>
+</pm-root>
+
+Angular is a Single Page Application
+
+Appmodule
+	organization
+	bounderies
+	template resolution environment
+BrowserModule ->AppModule ->AppComponent
+
+Decorator
+---
+Decorator is a function that adds metadata to a class, its members or its methods.
+
+@Component({
+selector:'pm-root',
+template: `<div>template </div>`
+})
+
+creating a component
+--
+ng g c component_name
+
+Angular App module
+---
+@NgModule({
+
+	imports:[ExternalModule],
+	declarations:[ApplicationComponent],
+	bootstrap: [StartUpComponent]
+})
+export class AppModule{}
