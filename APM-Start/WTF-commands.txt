@@ -1,0 +1,26 @@
+git clone https://github.com/DeborahK/Angular-GettingStarted.git
+In project npm install
+
+connecting local repo to github repo
+https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github
+created remote repository
+modified file in local repo
+git status
+
+git remote add origin 
+error: origin already exist 
+git remote
+git remote -v
+git reset
+git statusOn branch master
+    nothing to commit, working tree clean
+git push 
+    error: src refspec main does not match any
+git show-ref  
+
+git push origin HEAD:main
+    remote: Resolving deltas: 100% (997/997), done.
+    To https://github.com/sadogilles/Application-Product-Mangement.git
+    * [new branch]      HEAD -> main
+
+This branch's parent is that of DeborahK
