@@ -13,6 +13,7 @@ export class ProductListComponent{
     toggleImage(){
         this.showImage =!this.showImage;
     }
+    listFilter='cart'
     products:any = [
         {
           "productId": 1,
