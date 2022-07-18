@@ -6,10 +6,13 @@ import { Component } from "@angular/core";
 })
 export class ProductListComponent{
     
-    pageTitle:string ="Product List";
-    imageWidth:number=50;
-    imageMargin:number=2;
-    
+    pageTitle="Product List";
+    imageWidth=50;
+    imageMargin=2;
+    showImage = true;
+    toggleImage(){
+        this.showImage =!this.showImage;
+    }
     products:any = [
         {
           "productId": 1,
