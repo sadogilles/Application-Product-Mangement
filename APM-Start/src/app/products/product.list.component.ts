@@ -15,8 +15,24 @@ export class ProductListComponent implements OnInit{
     toggleImage(){
         this.showImage =!this.showImage;
     }
-    listFilter='cart';
+    //private variable
+    private _listFilter:string='';
+
+    //getter
+    get listFilter():number{
+      return this._listFilter;
+    }
+
+    //setter
+    set listFilter(filter:string){
+      this._listFilter=filter;
+      console.log('in setter :', filter);
+    }
     
+    ngOnInit(): void {
+      //listFilter refers to the getter
+      this.listFilter='cart';
+  }
     products:IProduct[] = [
         {
           "productId": 1,
@@ -40,8 +56,6 @@ export class ProductListComponent implements OnInit{
         }
       ]
 
-      ngOnInit(): void {
-          console.log('life cycle hook method');
-      }
+      
 
 }
