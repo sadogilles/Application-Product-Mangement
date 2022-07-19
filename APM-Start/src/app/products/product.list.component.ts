@@ -12,6 +12,7 @@ export class ProductListComponent implements OnInit{
     imageWidth=50;
     imageMargin=2;
     showImage = true;
+
     toggleImage(){
         this.showImage =!this.showImage;
     }
@@ -19,18 +20,29 @@ export class ProductListComponent implements OnInit{
     private _listFilter:string='';
 
     //getter
-    get listFilter():number{
+    get listFilter():string{
       return this._listFilter;
     }
-
+    filteredProducts:IProduct[]=[];
     //setter
     set listFilter(filter:string){
       this._listFilter=filter;
       console.log('in setter :', filter);
+
+      this.filteredProducts= this.performFilter(filter);
     }
+
+     performFilter(filterValue: string): IProduct[] {
+      filterValue=filterValue.toLocaleLowerCase()
+      // returns a new array with the element matching the condition
+      return this.products.filter((p)=>{
+        return p.productName.toLocaleLowerCase().includes(filterValue);
+      })
+    }
+
     
     ngOnInit(): void {
-      //listFilter refers to the getter
+      //listFilter refers to the property getter? or setter? look like the getter
       this.listFilter='cart';
   }
     products:IProduct[] = [
@@ -59,3 +71,5 @@ export class ProductListComponent implements OnInit{
       
 
 }
+
+
