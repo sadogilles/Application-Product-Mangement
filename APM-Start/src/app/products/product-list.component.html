@@ -34,7 +34,7 @@
               <th>Price</th>
               <th>5 Star Rating</th>
             </tr>
-          </thead>
+         </thead>
 
           <tbody>
             <tr *ngFor='let product of filteredProducts'>
@@ -43,6 +43,6 @@
               <td>{{product.productCode |lowercase | convertToSpace:'-'}}</td>
               <td>{{product.releaseDate}}</td>
               <td>{{product.price | currency:'EUR':'symbol':'1.2-2'}}</td>
-              <td><pm-star [rating]='product.starRating'></pm-star></td>
+              <td><pm-star [rating]='product.starRating' (ratingClicked)='onRatingClicked($event)'></pm-star></td> 
             </tr>
           </tbody>

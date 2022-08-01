@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, Input, OnChanges, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnChanges, Output } from "@angular/core";
 
 @Component({
     selector:'pm-star',
@@ -8,12 +8,20 @@ import { AfterContentChecked, Component, Input, OnChanges, OnInit } from "@angul
 export class StarComponent implements OnChanges{
     
     
+    // @Input() rating : number = 0 ; //old synthax rating will always have 0 as value
      @Input() rating !: number ;
      cropWidth: number = 75;
 
-    ngOnChanges(): void {
+     @Output() ratingClicked:EventEmitter<string> = new EventEmitter<string>();
+
+    ngOnChanges(): void { // can use ngAfterContentChecked
          this.cropWidth= this.rating*75/5;
-        console.log(`aftercontentcheck ${this.rating}`);
+    
+    }
+
+    onClick():void{
+         console.log(`The rating ${this.rating} was clicked`);
+        this.ratingClicked.emit(`The rating ${this.rating} was clicked`);
     }
     
 
