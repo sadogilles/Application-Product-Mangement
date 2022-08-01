@@ -6,7 +6,7 @@
 <div class='card-body'>
     <div class='row'>
       <div class='col-md-2'>Filter by:</div>
-      <div class='col-md-4'>
+      <div class='col-md-4'> 
         <!-- binding now is on the property : when input changes, setter is called-->
         <input type='text' [(ngModel)]='listFilter' [innerText]='listFilter'/>
 
@@ -43,6 +43,6 @@
               <td>{{product.productCode |lowercase | convertToSpace:'-'}}</td>
               <td>{{product.releaseDate}}</td>
               <td>{{product.price | currency:'EUR':'symbol':'1.2-2'}}</td>
-              <td><pm-star></pm-star></td>
+              <td><pm-star [rating]='product.starRating'></pm-star></td>
             </tr>
           </tbody>
