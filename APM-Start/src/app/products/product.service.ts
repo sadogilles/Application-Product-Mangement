@@ -1,33 +1,18 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import { IProduct } from "./products";
 
 @Injectable(
-) 
-// @Injectable({providedIn:'root'})//root application injector, service is available in all 
+)  
 export class ProductService{
+ 
+  private productUrl='www.myWebService.com/api/products';
 
-    public getProducts():IProduct[]{
-        return [
-            {
-              "productId": 1,
-              "productName": "Leaf Rake",
-              "productCode": "GDN-0011",
-              "releaseDate": "March 19, 2021",
-              "description": "Leaf rake with 48-inch wooden handle.",
-              "price": 19.95,
-              "starRating": 3.2,
-              "imageUrl": "assets/images/leaf_rake.png"
-            },
-            {
-              "productId": 2,
-              "productName": "Garden Cart",
-              "productCode": "GDN-0023",
-              "releaseDate": "March 18, 2021",
-              "description": "15 gallon capacity rolling garden cart",
-              "price": 32.99,
-              "starRating": 4.2,
-              "imageUrl": "assets/images/garden_cart.png"
-            }
-          ];
+  constructor(private http:HttpClient){
+
     }
+   public getProducts():Observable<IProduct[]>{ // the method does nothing untill we subscribe
+      return this.http.get<IProduct[]>(this.productUrl);//get<IProduct[]> types/associates/maps the response to an array of product
+   }
 }
