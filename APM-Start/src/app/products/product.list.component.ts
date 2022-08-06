@@ -28,7 +28,6 @@ export class ProductListComponent implements OnInit{
     set listFilter(filter:string){
       this._listFilter=filter;
       console.log('in setter :', filter);
-
       this.filteredProducts= this.performFilter(filter);
     }
 
@@ -67,10 +66,6 @@ export class ProductListComponent implements OnInit{
           "imageUrl": "assets/images/garden_cart.png"
         }
       ]
-
-      onRatingClicked(message:any):void{
-        this.pageTitle="Product List"+message;
-      }
       
 
 }
