@@ -15,13 +15,18 @@ export class ProductListComponent implements OnInit{
     imageMargin=2;
     showImage = true;
     products:IProduct[] = [];
-
+    errorMessage='';
     constructor(private productService:ProductService){}
 
     ngOnInit(): void {
-      this.products = this.productService.getProducts();
-      this.filteredProducts=this.productService.getProducts();
-      this.listFilter='cart';
+      this.productService.getProducts().subscribe({
+        next: products=> {this.products=products;this.filteredProducts = this.products; },
+        error:err=>this.errorMessage=err
+      });
+
+     // 1 - this.filteredProducts = this.products; //product is empty as the subscription isnot finished
+      // we move the line into next function
+    
     }
 
     toggleImage(){this.showImage =!this.showImage;}
