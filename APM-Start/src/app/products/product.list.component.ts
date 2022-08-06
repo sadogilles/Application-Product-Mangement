@@ -1,10 +1,12 @@
 import { Component, OnInit } from "@angular/core";
+import { ProductService } from "./product.service";
 import { IProduct } from "./products";
 
 @Component({
     selector:'pm-products',
     templateUrl:'./product-list.component.html',
-    styleUrls:['./product-list.component.css']
+    styleUrls:['./product-list.component.css'],
+    providers:[ProductService]
 })
 export class ProductListComponent implements OnInit{
     
@@ -12,10 +14,18 @@ export class ProductListComponent implements OnInit{
     imageWidth=50;
     imageMargin=2;
     showImage = true;
+    products:IProduct[] = [];
 
-    toggleImage(){
-        this.showImage =!this.showImage;
+    constructor(private productService:ProductService){}
+
+    ngOnInit(): void {
+      this.products = this.productService.getProducts();
+      this.filteredProducts=this.productService.getProducts();
+      this.listFilter='cart';
     }
+
+    toggleImage(){this.showImage =!this.showImage;}
+
     //private variable
     private _listFilter:string='';
 
@@ -40,34 +50,8 @@ export class ProductListComponent implements OnInit{
     }
 
     
-    ngOnInit(): void {
-      //listFilter refers to the property getter? or setter? look like the getter
-      this.listFilter='cart';
-  }
-    products:IProduct[] = [
-        {
-          "productId": 1,
-          "productName": "Leaf Rake",
-          "productCode": "GDN-0011",
-          "releaseDate": "March 19, 2021",
-          "description": "Leaf rake with 48-inch wooden handle.",
-          "price": 19.95,
-          "starRating": 3.2,
-          "imageUrl": "assets/images/leaf_rake.png"
-        },
-        {
-          "productId": 2,
-          "productName": "Garden Cart",
-          "productCode": "GDN-0023",
-          "releaseDate": "March 18, 2021",
-          "description": "15 gallon capacity rolling garden cart",
-          "price": 32.99,
-          "starRating": 4.2,
-          "imageUrl": "assets/images/garden_cart.png"
-        }
-      ]
-      
-
+    
+  
 }
 
 
