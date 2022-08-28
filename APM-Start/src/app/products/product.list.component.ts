@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Subscription } from "rxjs";
 import { ProductService } from "./product.service";
 import { IProduct } from "./products";
 
@@ -8,7 +9,7 @@ import { IProduct } from "./products";
     styleUrls:['./product-list.component.css'],
     providers:[ProductService]
 })
-export class ProductListComponent implements OnInit{
+export class ProductListComponent implements OnInit,OnDestroy{
     
     pageTitle="Product List";
     imageWidth=50;
@@ -16,17 +17,22 @@ export class ProductListComponent implements OnInit{
     showImage = true;
     products:IProduct[] = [];
     errorMessage='';
+    sub!:Subscription;
+
     constructor(private productService:ProductService){}
+  
 
     ngOnInit(): void {
-      this.productService.getProducts().subscribe({
+      this.sub=this.productService.getProducts().subscribe({
         next: products=> {this.products=products;this.filteredProducts = this.products; },
         error:err=>this.errorMessage=err
       });
-
-     // 1 - this.filteredProducts = this.products; //product is empty as the subscription isnot finished
+     // 1 - if this.filteredProducts = this.products; //product is empty as the subscription isnot finished
       // we move the line into next function
     
+    }
+    ngOnDestroy(): void {
+      this.sub.unsubscribe();
     }
 
     toggleImage(){this.showImage =!this.showImage;}
