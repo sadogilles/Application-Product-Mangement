@@ -3,8 +3,20 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'pm-root',
   template: `
-  <h1>{{title}}</h1>
-  <pm-products></pm-products>
+  <nav class='navbar navbar-expand navbar-light bg-light'>
+        <a class='navbar-brand'>{{title}}</a>
+        <ul class='nav nav-pills'>
+          <!-- //use when we have only the path to passed -->
+          <li><a class='nav-link'  routerLink='/welcome'>Home</a></li>
+          <li><a class='nav-link'  routerLink='/products'>Product List</a></li>
+          <!-- //used to include other data to be passed -->
+          <!-- <li><a class='nav-link'  [routerLink]="['/welcome']">Home</a></li>
+          <li><a class='nav-link'  [routerLink]="['/products']">Product List</a></li> -->
+        </ul>
+    </nav>
+    <div  class="container">
+      <router-outlet></router-outlet>
+   </div>
   `,
   styleUrls: ['./app.component.css']
 })
