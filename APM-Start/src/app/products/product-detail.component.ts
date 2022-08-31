@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'pm-product-detail',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
-
-  constructor() { }
+  pageTitle:string='Page Detail';
+ 
+  constructor(private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+                
+      const id = Number(this.route.snapshot.paramMap.get('id'));
+      this.pageTitle+=`:${id}`;
   }
 
 }
