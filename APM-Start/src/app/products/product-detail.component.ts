@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from './products';
 
 @Component({
@@ -11,15 +11,15 @@ export class ProductDetailComponent implements OnInit {
   
   pageTitle:string='Page Detail';
   //strite typing so either we initial products or we type it to undefined to prevent errors
-  products : IProduct | undefined;
+  product : IProduct | undefined;
   //use the activatedroute service to retrieve the parameter
-  constructor(private route:ActivatedRoute) { }
+  constructor(private route:ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {             
       const id = Number(this.route.snapshot.paramMap.get('id'));
       this.pageTitle+=`${id}`;
       //hard coded product
-      this.products={
+      this.product={
         "productId": 1,
         "productName": "Leaf Rake",
         "productCode": "GDN-0011",
@@ -30,6 +30,10 @@ export class ProductDetailComponent implements OnInit {
         "imageUrl": "assets/images/leaf_rake.png"
       }
       
+  }
+
+  onBack():void{
+    this.router.navigate(['products']);
   }
 
 }
