@@ -9,6 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { ProductDetailComponent } from './products/product-detail.component';
 import { RouterModule } from '@angular/router';
 import { WelcomeComponent } from './home/welcome.component';
+import { ProductDetailGuard } from './products/product-detail.guard';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { WelcomeComponent } from './home/welcome.component';
     RouterModule.forRoot([
       {path:'products',component:ProductListComponent},
       // id is map to the url parameter from array
-      {path:'products/:id',component:ProductDetailComponent},
+      {path:'products/:id',
+      canActivate:[ProductDetailGuard] //try url such as http://localhost:4200/products/hello http://localhost:4200/products/0
+      ,component:ProductDetailComponent},
       {path:'welcome',component:WelcomeComponent},
       {path:'',redirectTo:'welcome',pathMatch:'full'},
       {path:'**',redirectTo:'welcome',pathMatch:'full'}
